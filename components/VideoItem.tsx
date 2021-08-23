@@ -9,8 +9,8 @@ import {
 import { Video, AVPlaybackStatus } from "expo-av";
 import Icon from "react-native-vector-icons/Ionicons";
 import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
-import { VideoInfoType } from "../Utils";
-import { styles } from "../styles";
+import { VideoInfoType } from "../hooks/Utils";
+import { Style } from "../styles";
 
 export function VideoItem({
   item,
@@ -25,22 +25,24 @@ export function VideoItem({
   index: number;
   pageOffset: number;
 }): any {
+  const styles = Style();
   const video = useRef(null) as LegacyRef<Video>;
 
   const [play, setPlay] = useState(false);
 
   useEffect(() => {
-    if (index == pageOffset && item.id == offset + 1) {
+    if (index == pageOffset && item.id == offset) {
       setPlay(true);
-      console.log("alskjdfl;ajflakdjfal;ksjdfl;aksjdfl;ajsdl;kfj");
     } else {
       setPlay(false);
     }
+  }, [offset, pageOffset]);
+
+  useEffect(() => {
     if (item.id == currentOffset && index == pageOffset) {
       setPlay(true);
-      console.log("please...");
     }
-  }, [offset]);
+  }, [pageOffset]);
 
   useEffect(() => {
     if (video == null || video == null) {
@@ -61,7 +63,7 @@ export function VideoItem({
         <>
           <Video
             ref={video}
-            // shouldPlay={index == pageOffset && item.id == offset + 1}
+            shouldPlay={play}
             source={{ uri: item.uri }}
             isMuted={!play}
             resizeMode='cover'
