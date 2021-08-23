@@ -1,12 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useCallback, useEffect } from "react";
-import {
-  Dimensions,
-  FlatList,
-  StyleSheet,
-  useWindowDimensions,
-  View,
-} from "react-native";
+import { FlatList, useWindowDimensions, View } from "react-native";
 import { VideoInfoType } from "../hooks/Utils";
 import { VideoItem } from "../components/VideoItem";
 

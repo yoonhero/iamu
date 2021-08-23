@@ -6,7 +6,7 @@ import {
   ImageBackground,
   TouchableHighlight,
 } from "react-native";
-import { Video, AVPlaybackStatus } from "expo-av";
+import { Video } from "expo-av";
 import Icon from "react-native-vector-icons/Ionicons";
 import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
 import { VideoInfoType } from "../hooks/Utils";
