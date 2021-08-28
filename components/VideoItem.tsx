@@ -49,9 +49,9 @@ export function VideoItem({
       return;
     }
     if (play) {
-      video.current.playAsync();
+      video?.current?.playAsync();
     } else {
-      video.current.pauseAsync();
+      video?.current?.pauseAsync();
     }
   }, [play]);
   return (
@@ -64,7 +64,7 @@ export function VideoItem({
           <Video
             ref={video}
             shouldPlay={play}
-            source={{ uri: item.uri }}
+            source={{ uri: item?.uri }}
             isMuted={!play}
             resizeMode='cover'
             isLooping={true}
@@ -72,14 +72,14 @@ export function VideoItem({
           />
           <View style={styles.header}>
             <Text style={{ color: "#fff", fontWeight: "600", fontSize: 20 }}>
-              {item.title}
+              {item?.title}
             </Text>
           </View>
           <View style={styles.mainContainer}>
             <View style={styles.innerLeft}>
               <View style={styles.dataContainer}>
                 <Text style={styles.description} numberOfLines={4}>
-                  {item.description}
+                  {item?.description}
                 </Text>
               </View>
             </View>

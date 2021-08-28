@@ -76,7 +76,10 @@ let dataArray = [
   { data: data3, offset: 0 },
 ];
 
-export default function Video() {
+export default function Video({ navigation }: { navigation: any }) {
+  useEffect(() => {
+    console.log(navigation);
+  }, []);
   const { width, height } = useWindowDimensions();
   // the offset of the horizontal flatlist item
   const [horizontalOffset, setHorizontalOffset] = useState(0);
