@@ -10,7 +10,7 @@ const Profile = ({ navigation }: { navigation: any }) => {
         alignItems: "center",
         justifyContent: "center",
       }}>
-      <Text>Yoonhero</Text>
+      <Text>HI</Text>
     </View>
   );
 };
