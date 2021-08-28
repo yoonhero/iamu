@@ -76,10 +76,30 @@ let dataArray = [
   { data: data3, offset: 0 },
 ];
 
+// Object {
+//   "addListener": [Function addListener],
+//   "canGoBack": [Function canGoBack],
+//   "dispatch": [Function dispatch],
+//   "getParent": [Function getParent],
+//   "getState": [Function anonymous],
+//   "goBack": [Function anonymous],
+//   "isFocused": [Function isFocused],
+//   "navigate": [Function anonymous],
+//   "pop": [Function anonymous],
+//   "popToTop": [Function anonymous],
+//   "push": [Function anonymous],
+//   "removeListener": [Function removeListener],
+//   "replace": [Function anonymous],
+//   "reset": [Function anonymous],
+//   "setOptions": [Function setOptions],
+//   "setParams": [Function anonymous],
+// }
+
 export default function Video({ navigation }: { navigation: any }) {
-  useEffect(() => {
-    console.log(navigation);
-  }, []);
+  // useEffect(() => {
+  //   console.log(navigation);
+  // }, []);
+
   const { width, height } = useWindowDimensions();
   // the offset of the horizontal flatlist item
   const [horizontalOffset, setHorizontalOffset] = useState(0);

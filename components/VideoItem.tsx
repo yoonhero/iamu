@@ -11,6 +11,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
 import { VideoInfoType } from "../hooks/Utils";
 import { Style } from "../styles";
+import { useNavigation } from "@react-navigation/native";
 
 export function VideoItem({
   item,
@@ -26,9 +27,23 @@ export function VideoItem({
   pageOffset: number;
 }): any {
   const styles = Style();
+  const navigation = useNavigation();
   const video = useRef(null) as LegacyRef<Video>;
 
   const [play, setPlay] = useState(false);
+
+  const goToProfile = () => {
+    setPlay(false);
+    navigation.navigate("Profile");
+  };
+
+  useEffect(() => {
+    const focusPage = navigation.addListener("focus", () => {
+      console.log("Focus");
+    });
+
+    return focusPage();
+  }, []);
 
   useEffect(() => {
     if (index == pageOffset && item.id == offset) {
@@ -36,7 +51,7 @@ export function VideoItem({
     } else {
       setPlay(false);
     }
-  }, [offset, pageOffset]);
+  }, [offset, pageOffset, navigation]);
 
   useEffect(() => {
     if (item.id == currentOffset && index == pageOffset) {
@@ -91,7 +106,9 @@ export function VideoItem({
                 }}
                 style={styles.profile}
                 borderRadius={25}>
-                <TouchableOpacity style={styles.btn}>
+                <TouchableOpacity
+                  style={styles.btn}
+                  onPress={() => goToProfile()}>
                   <Icon name='ios-add' color='#fff' size={15} />
                 </TouchableOpacity>
               </ImageBackground>
