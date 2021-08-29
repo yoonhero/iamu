@@ -13,8 +13,9 @@ const Main = styled.View`
 `;
 
 const VideoContainer = styled.View`
-  padding: 5px;
-  border-radius: 10px;
+  margin: 5px;
+  border-radius: 20px;
+  background: black;
 `;
 
 const data1: VideoInfoType[] = [
@@ -39,19 +40,19 @@ const data1: VideoInfoType[] = [
 ];
 const data2: VideoInfoType[] = [
   {
-    id: 0,
+    id: 3,
     title: "#nono",
     uri: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
     description: "wow wowowowoowowow",
   },
   {
-    id: 1,
+    id: 4,
     title: "#nono",
     uri: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
     description: "i'm genius",
   },
   {
-    id: 2,
+    id: 5,
     title: "#nono",
     uri: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
     description: "hahaha",
@@ -59,19 +60,19 @@ const data2: VideoInfoType[] = [
 ];
 const data3: VideoInfoType[] = [
   {
-    id: 0,
+    id: 6,
     title: "#Movie",
     uri: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
     description: "awesome!!",
   },
   {
-    id: 1,
+    id: 7,
     title: "#Movie",
     uri: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
     description: "I don't believe it",
   },
   {
-    id: 2,
+    id: 8,
     title: "#Movie",
     uri: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
     description: "wonderful",
@@ -91,7 +92,7 @@ const Videos = ({ navigation }: { navigation: any }) => {
   const renderVideo = useCallback(
     ({ item }: { item: VideoInfoType }) => {
       return (
-        <VideoContainer>
+        <VideoContainer key={item.id}>
           <Video
             shouldPlay={false}
             source={{ uri: item?.uri }}
@@ -99,7 +100,7 @@ const Videos = ({ navigation }: { navigation: any }) => {
             resizeMode='cover'
             style={{
               width: Math.ceil((width - 20) / 2),
-              height: Math.random() * ((height / 3) * 2),
+              height: Math.ceil(Math.random() * ((height / 3) * 2)) + 20,
               borderRadius: 20,
             }}
           />
@@ -113,12 +114,10 @@ const Videos = ({ navigation }: { navigation: any }) => {
     <Main>
       <MasonryList
         data={datas}
-        keyExtractor={(item: any, index: number): string => index.toString()}
         numColumns={2}
-        renderItem={({ item }: { item: VideoInfoType }) => renderVideo(item)}
+        renderItem={renderVideo}
         showsVerticalScrollIndicator={false}
-        onEndReachedThreshold={0.2}
-        onEndReached={() => alert("This is the end of the list")}
+        onEndReachedThreshold={0.1}
       />
     </Main>
   );
