@@ -94,7 +94,11 @@ let dataArray = [
 //   "setParams": [Function anonymous],
 // }
 
-export default function Video({ navigation }: { navigation: any }) {
+export default function VerNhorScrollVideo({
+  navigation,
+}: {
+  navigation: any;
+}) {
   // useEffect(() => {
   //   console.log(navigation);
   // }, []);
@@ -149,10 +153,11 @@ export default function Video({ navigation }: { navigation: any }) {
           currentOffset={offset}
           index={pageIndex}
           pageOffset={verticalOffset}
+          navigation={navigation}
         />
       );
     },
-    [horizontalOffset, verticalOffset]
+    [horizontalOffset, verticalOffset, navigation]
   );
 
   const renderFlatlist = useCallback(

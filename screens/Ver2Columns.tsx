@@ -10,12 +10,13 @@ const Main = styled.View`
   flex: 1;
   align-items: center;
   justify-content: center;
+  background-color: black;
 `;
 
 const VideoContainer = styled.View`
   margin: 5px;
   border-radius: 20px;
-  background: black;
+  background: rgba(0, 0, 0, 0.1);
 `;
 
 const data1: VideoInfoType[] = [
@@ -81,9 +82,23 @@ const data3: VideoInfoType[] = [
 
 let dataArray = [...data1, ...data2, ...data3];
 
-const Videos = ({ navigation }: { navigation: any }) => {
+const Ver2ColumnsVideos = ({
+  route,
+  navigation,
+}: {
+  route: any;
+  navigation: any;
+}) => {
   const [datas, setDatas] = useState(dataArray);
   const { width, height } = useWindowDimensions();
+  const [topic, setTopic] = useState(route?.params?.topic);
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerTitle: route?.params?.topic,
+    });
+    setTopic(route?.params?.topic);
+  }, []);
 
   useEffect(() => {
     setDatas(dataArray);
@@ -102,7 +117,7 @@ const Videos = ({ navigation }: { navigation: any }) => {
             style={{
               width: Math.ceil((width - 20) / 2),
               height:
-                randomHeight > height / 4 && randomHeight < height / 2
+                randomHeight > height / 4 && randomHeight < (height / 3) * 2
                   ? randomHeight
                   : height / 3,
               borderRadius: 20,
@@ -127,4 +142,4 @@ const Videos = ({ navigation }: { navigation: any }) => {
   );
 };
 
-export default Videos;
+export default Ver2ColumnsVideos;

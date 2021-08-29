@@ -20,15 +20,16 @@ export function VideoItem({
   currentOffset,
   index,
   pageOffset,
+  navigation,
 }: {
   item: VideoInfoType;
   offset: number;
   currentOffset: number;
   index: number;
   pageOffset: number;
+  navigation: any;
 }): any {
   const styles = Style();
-  const navigation = useNavigation();
   const video = useRef(null) as LegacyRef<Video>;
 
   const [play, setPlay] = useState(false);
@@ -41,16 +42,23 @@ export function VideoItem({
 
   const goToVideos = () => {
     setPlay(false);
-    navigation.navigate("Videos");
+    navigation.navigate("Videos", {
+      topic: item?.title,
+    });
   };
 
   useEffect(() => {
-    const focusPage = navigation.addListener("focus", () => {
-      console.log("Focus");
+    const focused = navigation.addListener("focus", () => {
+      if (index == pageOffset && item.id == offset) {
+        setPlay(true);
+      } else {
+        setPlay(false);
+      }
     });
 
-    return focusPage();
-  }, []);
+    // Return the function to unsubscribe from the event so it gets removed on unmount
+    return focused;
+  }, [navigation]);
 
   useEffect(() => {
     if (index == pageOffset && item.id == offset) {
@@ -76,6 +84,7 @@ export function VideoItem({
       video?.current?.pauseAsync();
     }
   }, [play]);
+
   return (
     <View key={item.id}>
       <TouchableHighlight
