@@ -5,6 +5,7 @@ import {
   View,
   ImageBackground,
   TouchableHighlight,
+  useWindowDimensions,
 } from "react-native";
 import { Video } from "expo-av";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -31,6 +32,7 @@ export function VideoItem({
   const video = useRef(null) as LegacyRef<Video>;
 
   const [play, setPlay] = useState(false);
+  const { width, height } = useWindowDimensions();
 
   const goToProfile = () => {
     setPlay(false);
@@ -65,7 +67,7 @@ export function VideoItem({
   }, [pageOffset]);
 
   useEffect(() => {
-    if (video == null || video == null) {
+    if (video == null || video == undefined) {
       return;
     }
     if (play) {
@@ -88,7 +90,11 @@ export function VideoItem({
             isMuted={!play}
             resizeMode='cover'
             isLooping={true}
-            style={styles.video}
+            style={{
+              width: width,
+              height: height,
+              flex: 1,
+            }}
           />
           <View style={styles.header}>
             <TouchableOpacity onPress={() => goToVideos()}>

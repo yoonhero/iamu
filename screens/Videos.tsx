@@ -91,6 +91,7 @@ const Videos = ({ navigation }: { navigation: any }) => {
 
   const renderVideo = useCallback(
     ({ item }: { item: VideoInfoType }) => {
+      let randomHeight = Math.ceil(Math.random() * ((height / 3) * 2));
       return (
         <VideoContainer key={item.id}>
           <Video
@@ -100,7 +101,10 @@ const Videos = ({ navigation }: { navigation: any }) => {
             resizeMode='cover'
             style={{
               width: Math.ceil((width - 20) / 2),
-              height: Math.ceil(Math.random() * ((height / 3) * 2)) + 20,
+              height:
+                randomHeight > height / 4 && randomHeight < height / 2
+                  ? randomHeight
+                  : height / 3,
               borderRadius: 20,
             }}
           />

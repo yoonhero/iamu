@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState, useCallback, useEffect } from "react";
 import { FlatList, useWindowDimensions, View } from "react-native";
 import { VideoInfoType } from "../hooks/Utils";
@@ -110,7 +109,7 @@ export default function Video({ navigation }: { navigation: any }) {
 
   useEffect(() => {
     let dataArr = datas;
-    if (dataArr.length >= verticalOffset) {
+    if (dataArr.length > verticalOffset) {
       dataArr[verticalOffset].offset = horizontalOffset;
     }
     setDatas(dataArr);
@@ -118,7 +117,7 @@ export default function Video({ navigation }: { navigation: any }) {
 
   useEffect(() => {
     const dataArr = datas;
-    if (dataArr.length >= verticalOffset) {
+    if (dataArr.length > verticalOffset) {
       setHorizontalOffset(dataArr[verticalOffset].offset);
     }
     setDatas(dataArr);
@@ -176,7 +175,6 @@ export default function Video({ navigation }: { navigation: any }) {
           }}
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
-          getItemLayout={getHorizontalItem}
           removeClippedSubviews={true}
           legacyImplementation={true}
           windowSize={1}
@@ -189,7 +187,6 @@ export default function Video({ navigation }: { navigation: any }) {
 
   return (
     <View style={{ flex: 1, backgroundColor: "#000" }}>
-      <StatusBar style='auto' />
       <FlatList
         data={datas}
         keyExtractor={(item: FlatlistType, index: number) => String(index)}
@@ -201,7 +198,6 @@ export default function Video({ navigation }: { navigation: any }) {
           setVerticalOffset(Math.ceil(e.nativeEvent.contentOffset.y / height));
         }}
         removeClippedSubviews={true}
-        getItemLayout={getVerticalItem}
         legacyImplementation={true}
         windowSize={1}
         initialNumToRender={2}
