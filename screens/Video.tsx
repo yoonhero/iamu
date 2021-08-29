@@ -153,7 +153,7 @@ export default function Video({ navigation }: { navigation: any }) {
         />
       );
     },
-    [horizontalOffset, verticalOffset, datas]
+    [horizontalOffset, verticalOffset]
   );
 
   const renderFlatlist = useCallback(
@@ -179,6 +179,8 @@ export default function Video({ navigation }: { navigation: any }) {
           getItemLayout={getHorizontalItem}
           removeClippedSubviews={true}
           legacyImplementation={true}
+          windowSize={1}
+          initialNumToRender={2}
         />
       );
     },
@@ -201,6 +203,8 @@ export default function Video({ navigation }: { navigation: any }) {
         removeClippedSubviews={true}
         getItemLayout={getVerticalItem}
         legacyImplementation={true}
+        windowSize={1}
+        initialNumToRender={2}
       />
     </View>
   );

@@ -37,6 +37,11 @@ export function VideoItem({
     navigation.navigate("Profile");
   };
 
+  const goToVideos = () => {
+    setPlay(false);
+    navigation.navigate("Videos");
+  };
+
   useEffect(() => {
     const focusPage = navigation.addListener("focus", () => {
       console.log("Focus");
@@ -86,9 +91,11 @@ export function VideoItem({
             style={styles.video}
           />
           <View style={styles.header}>
-            <Text style={{ color: "#fff", fontWeight: "600", fontSize: 20 }}>
-              {item?.title}
-            </Text>
+            <TouchableOpacity onPress={() => goToVideos()}>
+              <Text style={{ color: "#fff", fontWeight: "600", fontSize: 20 }}>
+                {item?.title}
+              </Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.mainContainer}>
             <View style={styles.innerLeft}>
