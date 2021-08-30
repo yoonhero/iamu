@@ -2,21 +2,14 @@
 import React, { useState, useEffect, useCallback } from "react";
 import styled from "styled-components/native";
 import { VideoInfoType } from "../hooks/Utils";
-import { FlatList, useWindowDimensions } from "react-native";
 import MasonryList from "@react-native-seoul/masonry-list";
-import { Video } from "expo-av";
+import VideoThumbnail from "../components/VideoThumbnail";
 
 const Main = styled.View`
   flex: 1;
   align-items: center;
   justify-content: center;
   background-color: black;
-`;
-
-const VideoContainer = styled.View`
-  margin: 5px;
-  border-radius: 20px;
-  background: rgba(0, 0, 0, 0.1);
 `;
 
 const data1: VideoInfoType[] = [
@@ -90,7 +83,6 @@ const Ver2ColumnsVideos = ({
   navigation: any;
 }) => {
   const [datas, setDatas] = useState(dataArray);
-  const { width, height } = useWindowDimensions();
   const [topic, setTopic] = useState(route?.params?.topic);
 
   useEffect(() => {
@@ -106,25 +98,7 @@ const Ver2ColumnsVideos = ({
 
   const renderVideo = useCallback(
     ({ item }: { item: VideoInfoType }) => {
-      let randomHeight = Math.ceil(Math.random() * ((height / 3) * 2));
-      return (
-        <VideoContainer key={item.id}>
-          <Video
-            shouldPlay={false}
-            source={{ uri: item?.uri }}
-            isMuted={true}
-            resizeMode='cover'
-            style={{
-              width: Math.ceil((width - 20) / 2),
-              height:
-                randomHeight > height / 4 && randomHeight < (height / 3) * 2
-                  ? randomHeight
-                  : height / 3,
-              borderRadius: 20,
-            }}
-          />
-        </VideoContainer>
-      );
+      return <VideoThumbnail item={item} />;
     },
     [datas]
   );
