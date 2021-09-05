@@ -6371,6 +6371,13 @@
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-17.0.2.tgz"
   "version" "17.0.2"
 
+"react-native-animated-splash-screen@^2.0.5":
+  "integrity" "sha512-VTZmcYHQq8lxtVtiXQFJKGSSftewI+F3hgLY0ONBA2g3GP/jIgLJHoShup4HBLeA0Q2mjvyNT39JpfTDcLKtHQ=="
+  "resolved" "https://registry.npmjs.org/react-native-animated-splash-screen/-/react-native-animated-splash-screen-2.0.5.tgz"
+  "version" "2.0.5"
+  dependencies:
+    "prop-types" "^15.7.2"
+
 "react-native-gesture-handler@^1.10.3", "react-native-gesture-handler@>= 1.0.0":
   "integrity" "sha512-cBGMi1IEsIVMgoox4RvMx7V2r6bNKw0uR1Mu1o7NbuHS6BRSVLq0dP34l2ecnPlC+jpWd3le6Yg1nrdCjby2Mw=="
   "resolved" "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-1.10.3.tgz"
